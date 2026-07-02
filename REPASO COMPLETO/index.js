@@ -23,6 +23,6 @@ server.use("/hobbies", hobbiesRoutes);
 
 server.listen(PORT, async () => {
   await sequelize.authenticate();
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ alter: true });
   console.log("El server esta ON");
 });

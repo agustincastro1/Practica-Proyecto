@@ -89,11 +89,23 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const crearRelacion = async (req, res) => {
+  const id =  req.body.id
+  const idH = req.body.id
+
+  const usuario = await User.findByPk(id)
+  const consulta = await usuario.addHobbies(idH)
+  if(consulta){
+    res.status(201).json({message: "creado"})
+  }
+}
+
 module.exports = {
   getUsers,
   getUserById,
   createUser,
   updateUser,
   deleteUser,
-  getOldUser
+  getOldUser,
+  crearRelacion
 };

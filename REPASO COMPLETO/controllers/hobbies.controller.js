@@ -2,21 +2,32 @@ const { Model, where } = require("sequelize");
 const  Hobby  = require("../models/Hobby.model.js");
 const User = require("../models/User.model.js");
 
-const getHobbiesByGenero = async (req,res) => {
+const getHobbyBygen = async (req, res) => {
+
   try {
-    const { genero } = req.params
-    const hobbies = await hobby.findAll({
-      include: {
-        Model: User,
-        where: { genero },
-        attributes: []
+
+    const { gen } = req.params;
+    const hobby = await Hobby.findAll(
+    {
+      include:{
+          model : User,
+          where: {
+      genero:gen
       }
-    });
-    res.status(200).json(hobbies)
-  } catch (error) {
-    res.status(404).json(error)
+      }
+    })
+    if (!hobby) {
+      return res.status(404).json({ message: "Hobby no encontrado" });
+    }
+    res.status(200).json(hobby);
+
+  } 
+
+  catch (error) 
+  {
+    res.status(500).json(error);
   }
-}
+};
 
 const getHobbies = async (req, res) => {
   try {

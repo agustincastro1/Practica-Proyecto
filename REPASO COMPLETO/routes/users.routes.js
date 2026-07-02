@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getUsers, getUserById, createUser, updateUser, deleteUser, getOldUser } = require("../controllers/users.controller");
+const { getUsers, getUserById, createUser, updateUser, deleteUser, getOldUser, crearRelacion } = require("../controllers/users.controller");
 
 const routes = Router()
 
@@ -9,5 +9,6 @@ routes.get('/:id', getUserById)
 routes.post('/', createUser)
 routes.put('/:id', updateUser)
 routes.delete('/:id', deleteUser)
+routes.post("/", crearRelacion)
 
 module.exports = routes
